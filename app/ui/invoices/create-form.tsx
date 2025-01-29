@@ -12,7 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { Button } from "@/app/ui/button";
 import { createInvoice, State } from "@/app/lib/actions";
-import { error } from "console";
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} };
@@ -128,8 +127,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         </fieldset>
         <div id="invoice-error" aria-live="polite" aria-atomic="true">
           {state.errors?.status &&
-            state.errors.status.map((error: string) => (
-              <p className="text-red-500 text-sm mt-2">{error}</p>
+            state.errors.status.map((error: string, idx: number) => (
+              <p key={idx} className="text-red-500 text-sm mt-2">{error}</p>
             ))}
         </div>
         {state.errors && <div className="text-red-500 text-sm mt-2"> {state.message}</div>}
